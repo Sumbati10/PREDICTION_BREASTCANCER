@@ -17,6 +17,10 @@
 
     .container {
       margin-top: 30px;
+      border-radius: 8px;
+      background: #f3add0;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .nav-tabs .nav-link {
@@ -38,7 +42,7 @@
     .btn-primary {
       background-color: #ff6f61;
       border-color: #ff6f61;
-      color: #fff;
+      color: #4b09ac;
     }
 
     .btn-primary:hover {
@@ -63,11 +67,11 @@
 
     .form-control {
       border-radius: 0.3rem;
-      height: 50px; /* Increased height for the input fields */
+      height: 40px; /* Adjusted height for the input fields */
     }
 
     .form-group {
-      margin-bottom: 20px; /* Increased spacing between form fields */
+      margin-bottom: 20px; /* Adjusted spacing between form fields */
     }
 
     #prediction {
@@ -84,13 +88,6 @@
 
     .about-text p {
       margin-bottom: 20px;
-    }
-
-    .container {
-      border-radius: 8px;
-      background: #f3add0;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .image-left {
@@ -123,60 +120,56 @@
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="useModel" role="tabpanel" aria-labelledby="use-model-tab">
         <h1 class="head">Breast Cancer Detection</h1>
-        <div class="container">
-          <form action="{{ url_for('predict') }}" method="post" class="form-inline">
-            <div class="row">
-              <div class="col-md-6 image-left">
-                <img class="image" src="{{ url_for('static', filename='banner.jpg') }}" alt="Breast Cancer Detection Banner" width="100%" height="auto" />
+        <div class="row">
+          <div class="col-md-6 image-left">
+            <img class="image" src="{{ url_for('static', filename='banner.jpg') }}" alt="Breast Cancer Detection Banner" width="100%" height="auto" />
+          </div>
+          
+          <div class="col-md-6">
+            <h4 class="text-center">Enter Cell Details</h4>
+            <form action="{{ url_for('predict') }}" method="post">
+              <div class="form-group">
+                <label for="clump_thickness">Clump Thickness</label>
+                <input type="text" class="form-control" name="clump_thickness" required="required">
               </div>
-              
-              <div class="col-md-6">
-                <h4 class="text-center">Enter Cell Details</h4>
-                <div class="container">
-                  <div class="form-group">
-                    <label for="clump_thickness">Clump Thickness</label>
-                    <input type="text" class="form-control" name="clump_thickness" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="uniform_cell_size">Uniform Cell Size</label>
-                    <input type="text" class="form-control" name="uniform_cell_size" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="uniform_cell_shape">Uniform Cell Shape</label>
-                    <input type="text" class="form-control" name="uniform_cell_shape" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="marginal_adhesion">Marginal Adhesion</label>
-                    <input type="text" class="form-control" name="marginal_adhesion" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="single_epithelial_size">Single Epithelial Cell Size</label>
-                    <input type="text" class="form-control" name="single_epithelial_size" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="bare_nuclei">Bare Nuclei</label>
-                    <input type="text" class="form-control" name="bare_nuclei" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="bland_chromatin">Bland Chromatin</label>
-                    <input type="text" class="form-control" name="bland_chromatin" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="normal_nucleoli">Normal Nucleoli</label>
-                    <input type="text" class="form-control" name="normal_nucleoli" required="required">
-                  </div>
-                  <div class="form-group">
-                    <label for="mitoses">Mitoses</label>
-                    <input type="text" class="form-control" name="mitoses" required="required">
-                  </div>
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Predict</button>
-                  </div>
-                </div>
+              <div class="form-group">
+                <label for="uniform_cell_size">Uniform Cell Size</label>
+                <input type="text" class="form-control" name="uniform_cell_size" required="required">
               </div>
-            </div>
-          </form>
-          <div id="prediction">{{ prediction_text }}</div>
+              <div class="form-group">
+                <label for="uniform_cell_shape">Uniform Cell Shape</label>
+                <input type="text" class="form-control" name="uniform_cell_shape" required="required">
+              </div>
+              <div class="form-group">
+                <label for="marginal_adhesion">Marginal Adhesion</label>
+                <input type="text" class="form-control" name="marginal_adhesion" required="required">
+              </div>
+              <div class="form-group">
+                <label for="single_epithelial_size">Single Epithelial Cell Size</label>
+                <input type="text" class="form-control" name="single_epithelial_size" required="required">
+              </div>
+              <div class="form-group">
+                <label for="bare_nuclei">Bare Nuclei</label>
+                <input type="text" class="form-control" name="bare_nuclei" required="required">
+              </div>
+              <div class="form-group">
+                <label for="bland_chromatin">Bland Chromatin</label>
+                <input type="text" class="form-control" name="bland_chromatin" required="required">
+              </div>
+              <div class="form-group">
+                <label for="normal_nucleoli">Normal Nucleoli</label>
+                <input type="text" class="form-control" name="normal_nucleoli" required="required">
+              </div>
+              <div class="form-group">
+                <label for="mitoses">Mitoses</label>
+                <input type="text" class="form-control" name="mitoses" required="required">
+              </div>
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Predict</button>
+              </div>
+            </form>
+            <div id="prediction">{{ prediction_text }}</div>
+          </div>
         </div>
       </div>
       <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
@@ -194,12 +187,13 @@
             <li><strong>Uniform Cell Shape:</strong> Evaluates how uniform the shape of the cells is. Abnormal cell shapes can be indicative of cancerous growth.</li>
             <li><strong>Marginal Adhesion:</strong> Checks how well the cells adhere to each other. Poor adhesion may suggest malignancy.</li>
             <li><strong>Single Epithelial Cell Size:</strong> Measures the size of individual epithelial cells. Abnormal sizes can be a marker of disease.</li>
-            <li><strong>Bare Nuclei:</strong> Looks for nuclei that are not covered by cytoplasm. Presence of bare nuclei can signal malignancy.</li>
-            <li><strong>Bland Chromatin:</strong> Evaluates the texture of chromatin. Irregularities can indicate cancerous changes.</li>
-            <li><strong>Normal Nucleoli:</strong> Assesses the presence of nucleoli. Abnormal nucleoli can be a sign of cancer.</li>
-            <li><strong>Mitoses:</strong> Counts the number of cells undergoing mitosis. Higher counts can suggest rapid cell division typical of cancerous cells.</li>
+            <li><strong>Bare Nuclei:</strong> Looks for nuclei that are not covered by cytoplasm. Presence of bare nuclei can signal cancerous cells.</li>
+            <li><strong>Bland Chromatin:</strong> Assesses the texture of chromatin. Variations may indicate cancerous changes.</li>
+            <li><strong>Normal Nucleoli:</strong> Checks for the presence of normal nucleoli. Abnormal nucleoli can be a sign of cancer.</li>
+            <li><strong>Mitoses:</strong> Measures the rate of cell division. Increased mitosis can be associated with cancerous growth.</li>
           </ul>
-          <p><strong>Disclaimer:</strong> This tool is intended for educational and research purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+          <p><strong>Disclaimer:</strong></p>
+          <p>The predictions made by this model should be used as a preliminary tool for identifying potential risks. A professional healthcare provider should always be consulted for a comprehensive diagnosis and treatment plan.</p>
         </div>
       </div>
     </div>
