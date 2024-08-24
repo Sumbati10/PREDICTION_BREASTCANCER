@@ -97,6 +97,13 @@
       justify-content: center;
       align-items: center;
     }
+    .image {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  height: auto;
+}
+
 
     .image-left img {
       max-width: 100%;
@@ -126,8 +133,9 @@
           <form action="{{ url_for('predict') }}" method="post" class="form-inline">
             <div class="row">
               <div class="col-md-6 image-left">
-                <img class="image" src="{{ url_for('static', filename='bcam_2022_banner.jpg') }}" width="100%" height="auto" alt="Breast Cancer Detection Banner" />
+                <img class="image" src="{{ url_for('static', filename='banner.jpg') }}" alt="Breast Cancer Detection Banner" width="100%" height="auto" />
               </div>
+              
               <div class="col-md-6">
                 <h4 class="text-center">Enter Cell Details</h4>
                 <div class="container">
@@ -187,18 +195,17 @@
           <p><strong>Understanding the Prediction Process</strong></p>
           <p>The prediction of breast cancer risk is based on a comprehensive analysis of several key attributes:</p>
           <ul>
-            <li><strong>Clump Thickness:</strong> Higher values may indicate thicker cell clusters, which could be a sign of abnormal growth patterns.</li>
-            <li><strong>Uniformity of Cell Size:</strong> High uniformity might suggest a more organized and less chaotic cell structure, potentially reducing the risk of cancer.</li>
-            <li><strong>Uniformity of Cell Shape:</strong> Uniform cell shapes are typically associated with less malignancy.</li>
-            <li><strong>Marginal Adhesion:</strong> Cells with low marginal adhesion might indicate higher malignancy.</li>
-            <li><strong>Single Epithelial Cell Size:</strong> This parameter helps assess the size of individual cells, which can be indicative of cancerous changes.</li>
-            <li><strong>Bare Nuclei:</strong> The presence of bare nuclei can be a marker for cancerous cells.</li>
-            <li><strong>Bland Chromatin:</strong> Changes in chromatin patterns can be indicative of cancer.</li>
-            <li><strong>Normal Nucleoli:</strong> Normal nucleoli counts can help in distinguishing between benign and malignant cells.</li>
-            <li><strong>Mitoses:</strong> Increased mitosis rates may suggest rapid cell division typical of cancerous growth.</li>
+            <li><strong>Clump Thickness:</strong> Measures the thickness of cell clumps. Greater thickness may indicate abnormal growth.</li>
+            <li><strong>Uniform Cell Size:</strong> Assesses how uniform the size of the cells is. Variability in cell size can be a sign of irregularity.</li>
+            <li><strong>Uniform Cell Shape:</strong> Evaluates how uniform the shape of the cells is. Abnormal cell shapes can be indicative of cancerous growth.</li>
+            <li><strong>Marginal Adhesion:</strong> Checks how well the cells adhere to each other. Poor adhesion may suggest malignancy.</li>
+            <li><strong>Single Epithelial Cell Size:</strong> Measures the size of individual epithelial cells. Abnormal sizes can be a marker of disease.</li>
+            <li><strong>Bare Nuclei:</strong> Looks for nuclei that are not covered by cytoplasm. Presence of bare nuclei may indicate cancerous cells.</li>
+            <li><strong>Bland Chromatin:</strong> Evaluates the texture of chromatin in the nucleus. Abnormal chromatin texture can be a sign of cancer.</li>
+            <li><strong>Normal Nucleoli:</strong> Assesses the presence of normal nucleoli. Changes in nucleoli can be an indication of malignancy.</li>
+            <li><strong>Mitoses:</strong> Measures the number of mitoses. An increased number may suggest rapid cell division, common in cancer.</li>
           </ul>
-          <p><strong>Disclaimer:</strong></p>
-          <p>While this model provides valuable insights, it is not a substitute for professional medical advice. Always consult with healthcare professionals for accurate diagnosis and treatment options.</p>
+          <p>By entering data into the form, users can receive predictions and gain insights into the potential risk of breast cancer. The goal of this tool is to support early detection and improve patient outcomes.</p>
         </div>
       </div>
     </div>
