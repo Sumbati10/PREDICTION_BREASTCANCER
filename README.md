@@ -1,5 +1,5 @@
 ## Demo
-![image](https://github.com/user-attachments/assets/baf4023c-a825-40de-91e3-407be9d6c41f)
+![Demo](https://github.com/Sumbati10/PREDICTION_BREASTCANCER/blob/main/demo.gif)
 
 
 # Breast Cancer Detection Application
