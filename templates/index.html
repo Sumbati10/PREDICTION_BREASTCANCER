@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breast Cancer Detection</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #d5a1a7, #a3c0a9);
+      color: #333;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      margin-top: 30px;
+    }
+
+    .nav-tabs .nav-link {
+      border: 1px solid transparent;
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .nav-tabs .nav-link.active {
+      border: 1px solid #8c175d;
+      border-bottom-color: transparent;
+      background-color: #8c175d;
+      color: #007bff;
+    }
+
+    .nav-tabs {
+      margin-bottom: 30px;
+    }
+
+    .btn-primary {
+      background-color: #ff6f61;
+      border-color: #ff6f61;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #ff4a39;
+      border-color: #ff4a39;
+    }
+
+    .head {
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #343a40;
+    }
+
+    .image {
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-group label {
+      color: #343a40;
+    }
+
+    .form-control {
+      border-radius: 0.3rem;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    #prediction {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .about-text {
+      color: #333;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      border-radius: 8px;
+      background: #ed89bb;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+  <!-- jQuery, Popper.js, and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="use-model-tab" data-toggle="tab" href="#useModel" role="tab" aria-controls="useModel" aria-selected="true">Use Model</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">About</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="useModel" role="tabpanel" aria-labelledby="use-model-tab">
+        <h1 class="head">Breast Cancer Detection</h1>
+        <div class="container">
+          <form action="{{ url_for('predict') }}" method="post" class="form-inline">
+            <div class="row">
+              <div class="col-md-6">
+                <img class="image" src="{{ url_for('static', filename='images.jpg') }}" width="100%" height="auto" />
+              </div>
+              <div class="col-md-6">
+                <h4 class="text-center">Enter Cell Details</h4>
+                <div class="container">
+                  <div class="form-group">
+                    <label for="clump_thickness">Clump Thickness</label>
+                    <input type="text" class="form-control" name="clump_thickness" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="uniform_cell_size">Uniform Cell Size</label>
+                    <input type="text" class="form-control" name="uniform_cell_size" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="uniform_cell_shape">Uniform Cell Shape</label>
+                    <input type="text" class="form-control" name="uniform_cell_shape" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="marginal_adhesion">Marginal Adhesion</label>
+                    <input type="text" class="form-control" name="marginal_adhesion" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="single_epithelial_size">Single Epithelial Cell Size</label>
+                    <input type="text" class="form-control" name="single_epithelial_size" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="bare_nuclei">Bare Nuclei</label>
+                    <input type="text" class="form-control" name="bare_nuclei" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="bland_chromatin">Bland Chromatin</label>
+                    <input type="text" class="form-control" name="bland_chromatin" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="normal_nucleoli">Normal Nucleoli</label>
+                    <input type="text" class="form-control" name="normal_nucleoli" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label for="mitoses">Mitoses</label>
+                    <input type="text" class="form-control" name="mitoses" required="required">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Predict</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div id="prediction">{{ prediction_text }}</div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">
+        <h2 class="head">About the Model</h2>
+        <div class="about-text">
+          <p>This model is designed to detect the likelihood of breast cancer based on cell characteristics provided by the user. Enter the required information in the form to predict whether the patient is likely to have breast cancer.</p>
+          <p><strong>About Our Breast Cancer Detection Model</strong></p>
+          <p>This model is designed to assist healthcare professionals and researchers in identifying potential cases of breast cancer based on various cellular characteristics. By analyzing parameters such as clump thickness, uniformity of cell size and shape, marginal adhesion, and others, the model aims to provide early indications of cancerous cells.</p>
+          <p>The model leverages machine learning techniques to analyze the input data and generate predictions. It has been trained on a dataset comprising thousands of cell samples, enabling it to recognize patterns associated with cancerous cells.</p>
+          <p><strong>Understanding the Prediction Process</strong></p>
+          <p>The prediction of breast cancer risk is based on a comprehensive analysis of several key attributes:</p>
+          <ul>
+            <li><strong>Clump Thickness:</strong> Higher values may indicate thicker cell clusters, which could be a sign of abnormal growth patterns.</li>
+            <li><strong>Uniformity of Cell Size:</strong> High uniformity might suggest a more organized and less chaotic cell structure, potentially reducing the risk of cancer.</li>
+            <li><strong>Uniformity of Cell Shape:</strong> Uniform cell shapes could indicate a more controlled cell division process, which is generally associated with lower cancer risks.</li>
+            <li><strong>Marginal Adhesion:</strong> Strong adhesion between cells might suggest a more cohesive tumor mass, which could be indicative of cancerous conditions.</li>
+            <li><strong>Single Epithelial Cell Size:</strong> Larger cells might indicate faster-growing cells, which could be a sign of cancer.</li>
+            <li><strong>Bare Nuclei:</strong> Presence of bare nuclei (nuclei without cytoplasm) could indicate a higher likelihood of cancer due to disrupted cell structures.</li>
+            <li><strong>Bland Chromatin:</strong> Highly structured chromatin might suggest a more complex genetic makeup, which could be associated with cancer.</li>
+            <li><strong>Normal Nucleoli:</strong> The presence of normal nucleoli might suggest less abnormal cellular activity, potentially lowering cancer risk.</li>
+            <li><strong>Mitoses:</strong> High mitosis rates may indicate rapid cell division, which could be a sign of cancer.</li>
+          </ul>
+          <p><strong>Disclaimer</strong></p>
+          <p>This model is intended for informational purposes only and should not be used as a substitute for professional medical advice or diagnosis. Always consult a healthcare provider for any medical concerns or conditions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
