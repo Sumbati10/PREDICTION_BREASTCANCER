@@ -6,6 +6,8 @@ import pickle
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
+
+
 @app.route('/about')
 def about():
     return render_template('about.html')
