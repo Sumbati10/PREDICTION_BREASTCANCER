@@ -82,6 +82,9 @@ In your terminal, run:
 
 python app.py
 
+<img width="479" alt="image" src="https://github.com/user-attachments/assets/856c9e6a-81b7-493e-af7a-30336fe1497a">
+
+
 ## Contributing
 If you would like to contribute to this project, please fork the repository and create a pull request with your changes. For any issues or feature requests, please create an issue in the repository.
 
