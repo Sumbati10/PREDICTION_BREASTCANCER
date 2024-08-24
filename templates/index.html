@@ -87,7 +87,7 @@
 
     .container {
       border-radius: 8px;
-      background: #ed89bb;
+      background: #f3add0;
       padding: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
@@ -126,7 +126,7 @@
           <form action="{{ url_for('predict') }}" method="post" class="form-inline">
             <div class="row">
               <div class="col-md-6 image-left">
-                <img class="image" src="{{ url_for('static', filename='images.jpg') }}" alt="Breast Cancer Detection" />
+                <img class="image" src="{{ url_for('static', filename='bcam_2022_banner.jpg') }}" width="100%" height="auto" alt="Breast Cancer Detection Banner" />
               </div>
               <div class="col-md-6">
                 <h4 class="text-center">Enter Cell Details</h4>
