@@ -3,21 +3,22 @@ import pandas as pd
 from flask import Flask, request, render_template
 import pickle
 from flask import send_from_directory
-from sklearn.exceptions import InconsistentVersionWarning
-from werkzeug.utils import secure_filename
+
+
 
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
+app.static_folder = 'static'
 
-@app.route('/static/<path:path')
-def send_static(path):
-    return send_from_directory('C:/Users/LENOVO/Downloads/BREAST_CANCER/static', path)
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
 
 @app.route('/')
 def home():
