@@ -59,6 +59,8 @@
     .image {
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      height: 400px; /* Adjusted height for the image */
+      object-fit: cover; /* Ensures the image covers the specified height */
     }
 
     .form-group label {
@@ -122,7 +124,7 @@
         <h1 class="head">Breast Cancer Detection</h1>
         <div class="row">
           <div class="col-md-6 image-left">
-            <img class="image" src="{{ url_for('static', filename='banner.jpg') }}" alt="Breast Cancer Detection Banner" width="100%" height="auto" />
+            <img class="image" src="{{ url_for('static', filename='banner.jpg') }}" alt="Breast Cancer Detection Banner" width="100%" />
           </div>
           
           <div class="col-md-6">
@@ -187,7 +189,7 @@
             <li><strong>Uniform Cell Shape:</strong> Evaluates how uniform the shape of the cells is. Abnormal cell shapes can be indicative of cancerous growth.</li>
             <li><strong>Marginal Adhesion:</strong> Checks how well the cells adhere to each other. Poor adhesion may suggest malignancy.</li>
             <li><strong>Single Epithelial Cell Size:</strong> Measures the size of individual epithelial cells. Abnormal sizes can be a marker of disease.</li>
-            <li><strong>Bare Nuclei:</strong> Looks for nuclei that are not covered by cytoplasm. Presence of bare nuclei can signal cancerous cells.</li>
+            <li><strong>Bare Nuclei:</strong> Looks for nuclei without surrounding cell structures, which may be present in cancerous cells.</li>
             <li><strong>Bland Chromatin:</strong> Assesses the texture of chromatin. Variations may indicate cancerous changes.</li>
             <li><strong>Normal Nucleoli:</strong> Checks for the presence of normal nucleoli. Abnormal nucleoli can be a sign of cancer.</li>
             <li><strong>Mitoses:</strong> Measures the rate of cell division. Increased mitosis can be associated with cancerous growth.</li>
